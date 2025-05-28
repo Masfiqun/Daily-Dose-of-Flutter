@@ -109,87 +109,89 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF4FC3F7), Color(0xFF0288D1)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight
+      body: SafeArea(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF4FC3F7), Color(0xFF0288D1)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight
+            ),
           ),
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 24),
-        child: SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: size.height),
-            child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.app_registration, size: 80, color: Colors.white,),
-                  SizedBox(height: 10,),
-                  Text(
-                    'Create Your Account',
-                    style: TextStyle(
+          padding: EdgeInsets.symmetric(horizontal: 24),
+          child: SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: size.height),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.app_registration, size: 80, color: Colors.white,),
+                    SizedBox(height: 10,),
+                    Text(
+                      'Create Your Account',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    SizedBox(height: 30,),
+                    Card(
                       color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-                  SizedBox(height: 30,),
-                  Card(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)
-                    ),
-                    elevation: 6,
-                    child: Padding(
-                      padding: EdgeInsets.all(20),
-                      child: Column(
-                        children: [
-                          CustomTextField(
-                            controller: emailController, 
-                            lable: 'Email', 
-                            icon: Icons.email,
-                            keyboardType: TextInputType.emailAddress,
-                          ),
-                          CustomTextField(
-                            controller: passController, 
-                            lable: 'Password', 
-                            icon: Icons.lock,
-                            obscureText: true,
-                          ),
-                          SizedBox(height: 16,),
-                          DropdownButtonFormField(
-                            value: selectedRole,
-                            items: [
-                              DropdownMenuItem(value: 'student', child: Text('Student'),),
-                              DropdownMenuItem(value: 'mentor', child: Text('Mentor'),),
-                              DropdownMenuItem(value: 'admin', child: Text('Admin',),),
-                            ], 
-                            onChanged: (value) => setState(() => selectedRole = value!),
-                            decoration: InputDecoration(
-                              labelText: 'Select Role',
-                              prefixIcon: Icon(Icons.person_outline),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              )
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)
+                      ),
+                      elevation: 6,
+                      child: Padding(
+                        padding: EdgeInsets.all(20),
+                        child: Column(
+                          children: [
+                            CustomTextField(
+                              controller: emailController, 
+                              lable: 'Email', 
+                              icon: Icons.email,
+                              keyboardType: TextInputType.emailAddress,
                             ),
-                          ),
-                          SizedBox(height: 16,),
-                          _buildRoleSpecificFields(),
-                          SizedBox(height: 24,),
-                          Button(text: 'Register', onPressed: () {}),
-                          SizedBox(height: 12,),
-                          TextButton(onPressed: () {}, child: Text(
-                            'Already have an account? Sign In'
-                          ))
-                        ],
-                      ),  
-                    ),
-                  )
-                ],
+                            CustomTextField(
+                              controller: passController, 
+                              lable: 'Password', 
+                              icon: Icons.lock,
+                              obscureText: true,
+                            ),
+                            SizedBox(height: 16,),
+                            DropdownButtonFormField(
+                              value: selectedRole,
+                              items: [
+                                DropdownMenuItem(value: 'student', child: Text('Student'),),
+                                DropdownMenuItem(value: 'mentor', child: Text('Mentor'),),
+                                DropdownMenuItem(value: 'admin', child: Text('Admin',),),
+                              ], 
+                              onChanged: (value) => setState(() => selectedRole = value!),
+                              decoration: InputDecoration(
+                                labelText: 'Select Role',
+                                prefixIcon: Icon(Icons.person_outline),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                )
+                              ),
+                            ),
+                            SizedBox(height: 16,),
+                            _buildRoleSpecificFields(),
+                            SizedBox(height: 24,),
+                            Button(text: 'Register', onPressed: () {}),
+                            SizedBox(height: 12,),
+                            TextButton(onPressed: () {}, child: Text(
+                              'Already have an account? Sign In'
+                            ))
+                          ],
+                        ),  
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
